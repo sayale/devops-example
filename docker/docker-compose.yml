@@ -1,0 +1,22 @@
+version: '2'
+services:
+  web:
+    container_name: php
+    build: ./php
+    volumes:
+      - "./php/site.conf:/etc/apache2/sites-available/000-default.conf"
+      - "/var/www/devops-app:/var/www/html"
+    ports:
+      - "8080:80" 
+    depends_on:
+      - db
+  db:
+    container_name: mysql
+    build: ./mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=MyDb
+    ports:
+      - "3306:3306"
+    volumes:
+      - /var/db/mysql:/var/lib/mysql

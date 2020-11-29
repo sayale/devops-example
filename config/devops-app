@@ -5,7 +5,7 @@ server {
        server_name example.ubuntu.com;
 
        root /var/www/devops-app;
-       index index.html;
+       index index.php;
 
        location / {
                try_files $uri $uri/ =404;
